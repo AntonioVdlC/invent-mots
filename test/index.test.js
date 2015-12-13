@@ -39,12 +39,12 @@ describe("invent-mots", () => {
 		});
 	});
 
-	// -- invent.word -- \\
-	it("should have a `word` method", () => {
-		expect(invent.word).to.be.a("function");
+	// -- invent.mots -- \\
+	it("should have a `mots` method", () => {
+		expect(invent.mots).to.be.a("function");
 	});
 
-	describe("invent.word", () => {
+	describe("invent.mots", () => {
 		let language = {
 			alphabet: ["d", "e", "h", "l", "o", "r", "w"],
 			matrix: [
@@ -60,7 +60,7 @@ describe("invent-mots", () => {
 		invent.set(language);
 
 		it("should return an array of one word of random size when passed no parameters", () => {
-			let words = invent.word();
+			let words = invent.mots();
 
 			expect(words).to.be.instanceof(Array);
 			expect(words).to.have.length(1);
@@ -77,7 +77,7 @@ describe("invent-mots", () => {
 			let options = {
 				size: 3
 			};
-			let words = invent.word(options);
+			let words = invent.mots(options);
 
 			expect(words).to.be.instanceof(Array);
 			expect(words).to.have.length(1);
@@ -95,7 +95,7 @@ describe("invent-mots", () => {
 				size: 3,
 				number: 2
 			};
-			let words = invent.word(options);
+			let words = invent.mots(options);
 
 			expect(words).to.be.instanceof(Array);
 			expect(words).to.have.length(options.number);
@@ -115,7 +115,7 @@ describe("invent-mots", () => {
 				start: "h",
 				end: "d"
 			};
-			let words = invent.word(options);
+			let words = invent.mots(options);
 
 			expect(words).to.be.instanceof(Array);
 			expect(words).to.have.length(options.number);

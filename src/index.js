@@ -3,7 +3,7 @@ import lang from "lang-alpha-prob";
 // Export the `invent` object
 export default {
 	set: set,
-	word: word
+	mots: mots
 };
 
 // Declare internal variables
@@ -50,7 +50,7 @@ function set (language) {
  * @param  {String} options.end    End String for the words to be generated
  * @return {Array}                 Array containing all the generated words
  */
-function word ({size, number = 1, start = "", end = ""} = {number: 1}) {
+function mots ({size, number = 1, start = "", end = ""} = {number: 1}) {
 	let words = [];
 
 	size = size || Math.floor(Math.random() * (alphabet.length - 1)) + 1;
