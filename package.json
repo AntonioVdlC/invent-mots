@@ -37,5 +37,8 @@
     "istanbul": "^0.4.0",
     "mocha": "^2.3.3",
     "uglify-js": "^2.5.0"
+  },
+  "dependencies": {
+    "lang-alpha-prob": "^1.0.0"
   }
 }
