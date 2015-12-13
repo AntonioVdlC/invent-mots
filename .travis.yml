@@ -19,3 +19,11 @@ script:
 - npm run coverage:check
 after_success:
 - npm run coverage:report
+deploy:
+  provider: npm
+  email: antonio.villagra.de.la.cruz@gmail.com
+  api_key:
+    secure: sRUDeFWyP+4+xAfGmCr5qEHVLvfJBxknBG2dwtk9Gw4cz5J3kbsw3tCCMreQcIhj1hkxXdRLB9+w7sveVwbTnzOU/sjMiY/pRJlsB09Bjc/yYpjESvFgl9DU/5R6NlwEmsMGWTr4QqQIUVsUuhPuzZmzKvqWbRlHO69XfoGXoq0P1O2jtieo61dgQWYMX2BEb/Xt3NBJkeYfPIRBZnqKZ/Z264MzbFE7DmUuhYXuq1kEianL3Eyp2nLTx4Bv7VHx9xsRcZ0JgDr8K15Ptz94GzY84bKvAQg+LEjvOqEM1n/xMade61yLv3ohOZHdjp11JECERDLbliIVlW28Wessiz3aeF8vc7a2m/5Dr8cp1p5wHRpB+PWVNUto/QRuG+JCRjXrn7ERooDucY2cWVJLFxPp+/O4P5tpwLl19ted0lZ5V5+bIRdDYkmu5GpZfil115oS8TeNUndhQdbkWdk55Wk5jVL9VLlyoFvLPyZdyBlcskj9buU2IS1hciSf4lPT/uS1Q2VzIv7fBLiFYmaplF9zgBIeoEcuAC24olr0b379z6ZnaGcGlLEDykzCg5IK6fANXaUKMDVsQjTS3K3WQXFZGL3lcVre3gyKmVu/HTefsWc+PnICvpSkvPtTyygPdf8ar5IxskEuwzAXrlNHNju9/z31OO734/9xIXCEUzY=
+  on:
+    repo: AntonioVdlC/invent-mots
+  skip_cleanup: true
