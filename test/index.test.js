@@ -38,4 +38,88 @@ describe("invent-mots", () => {
 			expect(invent.set.bind(invent, language)).to.not.throw(Error);
 		});
 	});
+
+	// -- invent.word -- \\
+	it("should have a `word` method", () => {
+		expect(invent.word).to.be.a("function");
+	});
+
+	describe("invent.word", () => {
+		let language = {
+			alphabet: ["d", "e", "h", "l", "o", "r", "w"],
+			matrix: [
+						[0, 0, 0, 0 ,0, 0, 0],
+						[0, 0, 0, 1 ,0, 0, 0],
+						[0, 1, 0, 0 ,0, 0, 0],
+						[0.33333, 0, 0, 0.33333, 0.33333, 0, 0],
+						[0, 0, 0, 0 ,0, 1, 0],
+						[0, 0, 0, 1 ,0, 0, 0],
+						[0, 0, 0, 0 ,1, 0, 0]
+					]
+		};
+		invent.set(language);
+
+		it("should return an array of one word of random size when passed no parameters", () => {
+			let word = invent.word();
+
+			expect(word).to.be.instanceof(Array);
+			expect(word).to.have.length(1);
+
+			word.forEach((word) => {
+				expect(word).to.be.a("string");
+				expect(language.alphabet).to.have.members(word.split(""));
+			});
+		});
+
+		it("should return an array of one word of size 3 when passed an options object with those parameters", () => {
+			let options = {
+				size: 3
+			};
+			let word = invent.word(options);
+
+			expect(word).to.be.instanceof(Array);
+			expect(word).to.have.length(options.number);
+
+			word.forEach((word) => {
+				expect(word).to.be.a("string");
+				expect(language.alphabet).to.have.members(word.split(""));
+			});
+		});
+
+		it("should return an array of 2 words of size 3 when passed an options object with those parameters", () => {
+			let options = {
+				size: 3,
+				number: 2
+			};
+			let word = invent.word(options);
+
+			expect(word).to.be.instanceof(Array);
+			expect(word).to.have.length(options.number);
+
+			word.forEach((word) => {
+				expect(word).to.be.a("string");
+				expect(language.alphabet).to.have.members(word.split(""));
+			});
+		});
+
+		it("should return an array of 2 words of size 5 starting with 'h' and ending with 'd' when passed an options object with those parameters", () => {
+			let options = {
+				size: 5,
+				number: 2,
+				start: "h",
+				end: "d"
+			};
+			let word = invent.word(options);
+
+			expect(word).to.be.instanceof(Array);
+			expect(word).to.have.length(options.number);
+
+			word.forEach((word) => {
+				expect(word).to.be.a("string");
+				expect(language.alphabet).to.have.members(word.split(""));
+				expect(word.charAt(0)).to.equal(options.start);
+				expect(word.charAt(word.length - 1)).to.equal(options.end);
+			});
+		});
+	});
 });
