@@ -25,13 +25,13 @@ describe("invent-mots", () => {
 			let language = {
 				alphabet: ["d", "e", "h", "l", "o", "r", "w"],
 				matrix: [
-							[0, 0, 0, 0 ,0, 0, 0],
-							[0, 0, 0, 1 ,0, 0, 0],
-							[0, 1, 0, 0 ,0, 0, 0],
+							[0, 0.5, 0, 0 , 0.5, 0, 0],
+							[0, 0, 0, 1 , 0, 0, 0],
+							[0, 1, 0, 0 , 0, 0, 0],
 							[0.33333, 0, 0, 0.33333, 0.33333, 0, 0],
-							[0, 0, 0, 0 ,0, 1, 0],
-							[0, 0, 0, 1 ,0, 0, 0],
-							[0, 0, 0, 0 ,1, 0, 0]
+							[0, 0, 0, 0 , 0, 1, 0],
+							[0, 0, 0, 1 , 0, 0, 0],
+							[0, 0, 0, 0 , 1, 0, 0]
 						]
 			};
 
@@ -48,26 +48,28 @@ describe("invent-mots", () => {
 		let language = {
 			alphabet: ["d", "e", "h", "l", "o", "r", "w"],
 			matrix: [
-						[0, 0, 0, 0 ,0, 0, 0],
-						[0, 0, 0, 1 ,0, 0, 0],
-						[0, 1, 0, 0 ,0, 0, 0],
+						[0, 0.5, 0, 0 , 0.5, 0, 0],
+						[0, 0, 0, 1 , 0, 0, 0],
+						[0, 1, 0, 0 , 0, 0, 0],
 						[0.33333, 0, 0, 0.33333, 0.33333, 0, 0],
-						[0, 0, 0, 0 ,0, 1, 0],
-						[0, 0, 0, 1 ,0, 0, 0],
-						[0, 0, 0, 0 ,1, 0, 0]
+						[0, 0, 0, 0 , 0, 1, 0],
+						[0, 0, 0, 1 , 0, 0, 0],
+						[0, 0, 0, 0 , 1, 0, 0]
 					]
 		};
 		invent.set(language);
 
 		it("should return an array of one word of random size when passed no parameters", () => {
-			let word = invent.word();
+			let words = invent.word();
 
-			expect(word).to.be.instanceof(Array);
-			expect(word).to.have.length(1);
+			expect(words).to.be.instanceof(Array);
+			expect(words).to.have.length(1);
 
-			word.forEach((word) => {
+			words.forEach((word) => {
 				expect(word).to.be.a("string");
-				expect(language.alphabet).to.have.members(word.split(""));
+				word.split("").forEach((letter) => {
+					expect(language.alphabet).to.contain(letter);
+				});
 			});
 		});
 
@@ -75,14 +77,16 @@ describe("invent-mots", () => {
 			let options = {
 				size: 3
 			};
-			let word = invent.word(options);
+			let words = invent.word(options);
 
-			expect(word).to.be.instanceof(Array);
-			expect(word).to.have.length(options.number);
+			expect(words).to.be.instanceof(Array);
+			expect(words).to.have.length(1);
 
-			word.forEach((word) => {
+			words.forEach((word) => {
 				expect(word).to.be.a("string");
-				expect(language.alphabet).to.have.members(word.split(""));
+				word.split("").forEach((letter) => {
+					expect(language.alphabet).to.contain(letter);
+				});
 			});
 		});
 
@@ -91,14 +95,16 @@ describe("invent-mots", () => {
 				size: 3,
 				number: 2
 			};
-			let word = invent.word(options);
+			let words = invent.word(options);
 
-			expect(word).to.be.instanceof(Array);
-			expect(word).to.have.length(options.number);
+			expect(words).to.be.instanceof(Array);
+			expect(words).to.have.length(options.number);
 
-			word.forEach((word) => {
+			words.forEach((word) => {
 				expect(word).to.be.a("string");
-				expect(language.alphabet).to.have.members(word.split(""));
+				word.split("").forEach((letter) => {
+					expect(language.alphabet).to.contain(letter);
+				});
 			});
 		});
 
@@ -109,14 +115,17 @@ describe("invent-mots", () => {
 				start: "h",
 				end: "d"
 			};
-			let word = invent.word(options);
+			let words = invent.word(options);
 
-			expect(word).to.be.instanceof(Array);
-			expect(word).to.have.length(options.number);
+			expect(words).to.be.instanceof(Array);
+			expect(words).to.have.length(options.number);
 
-			word.forEach((word) => {
+			words.forEach((word) => {
 				expect(word).to.be.a("string");
-				expect(language.alphabet).to.have.members(word.split(""));
+				word.split("").forEach((letter) => {
+					expect(language.alphabet).to.contain(letter);
+				});
+
 				expect(word.charAt(0)).to.equal(options.start);
 				expect(word.charAt(word.length - 1)).to.equal(options.end);
 			});
